@@ -182,7 +182,7 @@ TimeCreationGuide.prototype._getStyleDataFunc = function(viewHeight, hourLength,
      * @returns {number[]} top, time
      */
     function getStyleData(scheduleData) {
-        var minMinutes = 30;
+        var minMinutes = 15;
         var gridY = scheduleData.nearestGridY,
             gridTimeY = scheduleData.nearestGridTimeY,
             gridEndTimeY = scheduleData.nearestGridEndTimeY || new TZDate(gridTimeY).addMinutes(minMinutes),
@@ -233,12 +233,12 @@ TimeCreationGuide.prototype._createGuideElement = function(dragStartEventData) {
  * @param {object} dragEventData - drag schedule data.
  */
 TimeCreationGuide.prototype._onDrag = function(dragEventData) {
-    var minutes30 = 30;
+    var minutes15 = 15;
     var styleFunc = this._styleFunc,
         unitData = this._styleUnit,
         startStyle = this._styleStart,
         refreshGuideElement = this._refreshGuideElement.bind(this),
-        heightOfHalfHour,
+        heightOfQuarterHour,
         endStyle,
         result;
 
@@ -246,22 +246,22 @@ TimeCreationGuide.prototype._onDrag = function(dragEventData) {
         return;
     }
 
-    heightOfHalfHour = (unitData[4] / 2);
+    heightOfQuarterHour = (unitData[4] / 2) / 2;
     endStyle = styleFunc(dragEventData);
 
     if (endStyle[0] > startStyle[0]) {
         result = this._limitStyleData(
             startStyle[0],
-            (endStyle[0] - startStyle[0]) + heightOfHalfHour,
+            (endStyle[0] - startStyle[0]) + heightOfQuarterHour,
             startStyle[1],
-            new TZDate(endStyle[1]).addMinutes(minutes30)
+            new TZDate(endStyle[1]).addMinutes(minutes15)
         );
     } else {
         result = this._limitStyleData(
             endStyle[0],
-            (startStyle[0] - endStyle[0]) + heightOfHalfHour,
+            (startStyle[0] - endStyle[0]) + heightOfQuarterHour,
             endStyle[1],
-            new TZDate(startStyle[1]).addMinutes(minutes30)
+            new TZDate(startStyle[1]).addMinutes(minutes15)
         );
         result.push(true);
     }

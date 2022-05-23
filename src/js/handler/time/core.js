@@ -24,11 +24,13 @@ var timeCore = {
     _calcGridYIndex: function(baseMil, height, y) {
         // get ratio from right expression > point.y : x = session.height : baseMil
         // and convert milliseconds value to hours.
-        var result = datetime.millisecondsTo('hour', (y * baseMil) / height),
-            floored = result | 0,
-            nearest = common.nearest(result - floored, [0, 1]);
+        var result = datetime.millisecondsTo('hour', (y * baseMil) / height);
+        var floored = result | 0;
+        // This is the fractions of an hour you want to be selectable on hover
+        var fractionsOfAHour = [0, 0.25, 0.5, 0.75, 1];
+        var nearest = common.nearest(result - floored, fractionsOfAHour);
 
-        return floored + (nearest ? 0.5 : 0);
+        return floored + nearest;
     },
 
     /**
