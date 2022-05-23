@@ -1,6 +1,7 @@
 /**
  * @fileoverview Handling creation events from drag handler and time grid view
  */
+/* eslint-disable */
 'use strict';
 
 var util = require('tui-code-snippet');
@@ -78,6 +79,7 @@ function TimeCreation(dragHandler, timeGridView, baseController, options) {
     this._disableClick = options.disableClick;
 
     dragHandler.on('dragStart', this._onDragStart, this);
+    dragHandler.on('mousemove', this._onMouseMove, this);
     dragHandler.on('click', this._onClick, this);
 
     if (this._disableDblClick) {
@@ -168,6 +170,35 @@ TimeCreation.prototype._onDragStart = function(dragStartEventData, overrideEvent
      * @property {number} nearestGridTimeY - time value for nearestGridY.
      */
     this.fire(overrideEventName || 'timeCreationDragstart', eventData);
+};
+
+/**
+ * Drag#mousemove event handler.
+ * @emits TimeCreation#timeCreationDragstart
+ * @param {object} dragStartEventData - Drag#dragStart event data.
+ * @param {string} [overrideEventName] - override emitted event name when supplied.
+ * @param {function} [revise] - supply function for revise event data before emit.
+ */
+ TimeCreation.prototype._onMouseMove = function(dragEventData, overrideEventName, revise) {
+    var target = dragEventData.target,
+        result = this.checkExpectedCondition(target),
+        getScheduleDataFunc,
+        eventData;
+        
+    if (!result) {
+        return;
+    }
+
+    getScheduleDataFunc = this._getScheduleDataFunc = this._retriveScheduleData(result);
+    eventData = this._dragStart = getScheduleDataFunc(dragEventData.originEvent);
+
+    eventData = getScheduleDataFunc(dragEventData.originEvent);
+    
+    if (revise) {
+        revise(eventData);
+    }
+
+    this.fire(overrideEventName || 'mousemove', eventData);
 };
 
 /**

@@ -1,6 +1,7 @@
 /**
  * @fileoverview Module for Time.Creation effect while dragging.
  */
+/* eslint-disable */
 'use strict';
 
 var common = require('../../common/common');
@@ -58,7 +59,8 @@ function TimeCreationGuide(timeCreation) {
     timeCreation.on({
         timeCreationDragstart: this._createGuideElement,
         timeCreationDrag: this._onDrag,
-        timeCreationClick: this._createGuideElement
+        timeCreationClick: this._createGuideElement,
+        mousemove: this._onMouseMove,
     }, this);
 
     this.applyTheme(timeCreation.baseController.theme);
@@ -206,7 +208,6 @@ TimeCreationGuide.prototype._createGuideElement = function(dragStartEventData) {
     var relatedView = dragStartEventData.relatedView,
         hourStart = datetime.millisecondsFrom('hour', dragStartEventData.hourStart) || 0,
         unitData, styleFunc, styleData, result, top, height, start, end;
-
     unitData = this._styleUnit = this._getUnitData(relatedView);
     styleFunc = this._styleFunc = this._getStyleDataFunc.apply(this, unitData);
     styleData = this._styleStart = styleFunc(dragStartEventData);
@@ -269,6 +270,32 @@ TimeCreationGuide.prototype._onDrag = function(dragEventData) {
     reqAnimFrame.requestAnimFrame(function() {
         refreshGuideElement.apply(null, result);
     });
+};
+
+TimeCreationGuide.prototype._onMouseMove = function(dragEventData) { 
+    var relatedView = dragEventData.relatedView,
+        hourStart = datetime.millisecondsFrom('hour', dragEventData.hourStart) || 0,
+        unitData, styleFunc, styleData, result, top, height, start, end;
+
+    unitData = this._styleUnit = this._getUnitData(relatedView);
+    styleFunc = this._styleFunc = this._getStyleDataFunc.apply(this, unitData);
+    styleData = this._styleStart = styleFunc(dragEventData);
+
+    start = new TZDate(styleData[1]).addMinutes(datetime.minutesFromHours(hourStart));
+    end = new TZDate(styleData[2]).addMinutes(datetime.minutesFromHours(hourStart));
+    top = styleData[0];
+    height = (unitData[4] * (end - start) / MIN60);
+
+    result = this._limitStyleData(
+        top,
+        height,
+        start,
+        end
+    );
+
+    this._refreshGuideElement.apply(this, result);
+    this.guideElement.style.pointerevents = "none";
+    relatedView.container.appendChild(this.guideElement);
 };
 
 TimeCreationGuide.prototype.applyTheme = function(theme) {

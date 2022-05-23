@@ -1,6 +1,7 @@
 /**
  * @fileoverview Drag handler for calendar.
  */
+/* eslint-disable */
 'use strict';
 
 var util = require('tui-code-snippet');
@@ -18,6 +19,7 @@ var config = require('../config');
  */
 function Drag(options, container) {
     domevent.on(container, 'mousedown', this._onMouseDown, this);
+    domevent.on(container, 'mousemove', this._onSimpleMouseMove, this);
 
     this.options = util.extend({
         distance: 10,
@@ -62,6 +64,7 @@ function Drag(options, container) {
  */
 Drag.prototype.destroy = function() {
     domevent.off(this.container, 'mousedown', this._onMouseDown, this);
+    domevent.off(this.container, 'mouseover', this._onMouseMove, this);
     this._isMoved = null;
     this.container = null;
 };
@@ -146,6 +149,24 @@ Drag.prototype._onMouseDown = function(mouseDownEvent) {
      * @property {MouseEvent} originEvent - original mouse event object.
      */
     this.fire('mousedown', this._dragStartEventData);
+};
+
+/**
+ * MouseOver DOM event handler.
+ * @param {MouseOver} mouseOverEvent mouseOverEvent event object.
+ */
+ Drag.prototype._onSimpleMouseMove = function(mouseOverEvent) {
+     if (this._dragStartEventData) return
+    var eventData = this._getEventData(mouseOverEvent);
+    
+    /**
+     * mouseOverEvent event for firefox bug. cancelable.
+     * @event Drag#mouseDown
+     * @type {object}
+     * @property {HTMLElement} target - target element in this event.
+     * @property {MouseEvent} originEvent - original mouse event object.
+     */
+    this.fire('mousemove', eventData);
 };
 
 /**
