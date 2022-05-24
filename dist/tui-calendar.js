@@ -1,6 +1,6 @@
 /*!
  * TOAST UI Calendar
- * @version 1.15.6 | Tue May 24 2022
+ * @version 1.15.7 | Tue May 24 2022
  * @license MIT
  */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -19269,7 +19269,7 @@ TimeResize.prototype._updateSchedule = function(scheduleData) {
         return;
     }
 
-    timeDiff -= datetime.millisecondsFrom('minutes', 30);
+    timeDiff -= datetime.millisecondsFrom('minutes', 15);
 
     baseDate = new TZDate(relatedView.getDate());
     dateEnd = datetime.end(baseDate);
@@ -19279,8 +19279,8 @@ TimeResize.prototype._updateSchedule = function(scheduleData) {
         newEnds = new TZDate(dateEnd);
     }
 
-    if (newEnds.getTime() - schedule.getStarts().getTime() < datetime.millisecondsFrom('minutes', 30)) {
-        newEnds = new TZDate(schedule.getStarts()).addMinutes(30);
+    if (newEnds.getTime() - schedule.getStarts().getTime() < datetime.millisecondsFrom('minutes', 15)) {
+        newEnds = new TZDate(schedule.getStarts()).addMinutes(15);
     }
 
     changes = common.getScheduleChanges(
@@ -19332,12 +19332,12 @@ TimeResize.prototype._onDragEnd = function(dragEndEventData) {
 
     scheduleData.range = [
         dragStart.timeY,
-        new TZDate(scheduleData.timeY).addMinutes(30)
+        new TZDate(scheduleData.timeY).addMinutes(15)
     ];
 
     scheduleData.nearestRange = [
         dragStart.nearestGridTimeY,
-        scheduleData.nearestGridTimeY.addMinutes(30)
+        scheduleData.nearestGridTimeY.addMinutes(15)
     ];
 
     this._updateSchedule(scheduleData);
@@ -19577,8 +19577,8 @@ TimeResizeGuide.prototype._onDrag = function(dragEventData) {
         height;
 
     height = (this._startHeightPixel + gridYOffsetPixel);
-    // at least large than 30min from schedule start time.
-    minHeight = guideTop + ratio(hourLength, viewHeight, 0.5);
+    // at least large than 15min from schedule start time.
+    minHeight = guideTop + ratio(hourLength, viewHeight, 0.25);
     minHeight -= this._startTopPixel;
     timeMinHeight = minHeight;
     minHeight += ratio(minutesLength, viewHeight, goingDuration) + ratio(minutesLength, viewHeight, comingDuration);
