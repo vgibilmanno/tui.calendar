@@ -1,6 +1,6 @@
 /*!
  * TOAST UI Calendar
- * @version 1.15.5 | Tue May 24 2022
+ * @version 1.15.6 | Tue May 24 2022
  * @license MIT
  */
 .tui-full-calendar-layout {
@@ -353,7 +353,6 @@
   height: 100%;
   top: 0;
   left: 0;
-  cursor: pointer;
 }
 .tui-full-calendar-timegrid-hourmarker {
   position: absolute;
@@ -462,6 +461,7 @@
   overflow: hidden;
   font-size: 12px;
   font-weight: bold;
+  cursor: pointer;
 }
 .tui-full-calendar-time-schedule-content {
   overflow: hidden;

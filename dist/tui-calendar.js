@@ -1,6 +1,6 @@
 /*!
  * TOAST UI Calendar
- * @version 1.15.5 | Tue May 24 2022
+ * @version 1.15.6 | Tue May 24 2022
  * @license MIT
  */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -4581,7 +4581,7 @@ datetime = {
      * The number of milliseconds 20 minutes for schedule min duration
      * @type {number}
      */
-    MILLISECONDS_SCHEDULE_MIN_DURATION: 20 * 60000,
+    MILLISECONDS_SCHEDULE_MIN_DURATION: 15 * 60000,
 
     /**
      * convert milliseconds
@@ -17517,11 +17517,21 @@ var timeCore = {
         // and convert milliseconds value to hours.
         var result = datetime.millisecondsTo('hour', (y * baseMil) / height);
         var floored = result | 0;
-        // This is the fractions of an hour you want to be selectable on hover
-        var fractionsOfAHour = [0, 0.25, 0.5, 0.75, 1];
-        var nearest = common.nearest(result - floored, fractionsOfAHour);
+        var value = result - floored;
 
-        return floored + nearest;
+        if (value <= 0.25) {
+            return floored + 0;
+        }
+
+        if (value > 0.25 && value <= 0.5) {
+            return floored + 0.25;
+        }
+
+        if (value > 0.5 && value <= 0.75) {
+            return floored + 0.5;
+        }
+
+        return floored + 0.75;
     },
 
     /**
@@ -20383,8 +20393,8 @@ var theme = {
     'week.timegridLeft.borderRight': '1px solid #e5e5e5',
     'week.timegridLeft.fontSize': '11px',
 
-    'week.timegridOneHour.height': '52px',
-    'week.timegridHalfHour.height': '26px',
+    'week.timegridOneHour.height': '90px',
+    'week.timegridHalfHour.height': '45px',
     'week.timegridHalfHour.borderBottom': 'none',
     'week.timegridHorizontalLine.borderBottom': '1px solid #e5e5e5',
 

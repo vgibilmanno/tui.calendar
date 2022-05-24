@@ -113,7 +113,7 @@ datetime = {
      * The number of milliseconds 20 minutes for schedule min duration
      * @type {number}
      */
-    MILLISECONDS_SCHEDULE_MIN_DURATION: 20 * 60000,
+    MILLISECONDS_SCHEDULE_MIN_DURATION: 15 * 60000,
 
     /**
      * convert milliseconds

@@ -26,11 +26,21 @@ var timeCore = {
         // and convert milliseconds value to hours.
         var result = datetime.millisecondsTo('hour', (y * baseMil) / height);
         var floored = result | 0;
-        // This is the fractions of an hour you want to be selectable on hover
-        var fractionsOfAHour = [0, 0.25, 0.5, 0.75, 1];
-        var nearest = common.nearest(result - floored, fractionsOfAHour);
+        var value = result - floored;
 
-        return floored + nearest;
+        if (value <= 0.25) {
+            return floored + 0;
+        }
+
+        if (value > 0.25 && value <= 0.5) {
+            return floored + 0.25;
+        }
+
+        if (value > 0.5 && value <= 0.75) {
+            return floored + 0.5;
+        }
+
+        return floored + 0.75;
     },
 
     /**
