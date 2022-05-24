@@ -1,7 +1,6 @@
 /*!
  * TOAST UI Calendar
- * @version 1.15.3 | Thu Feb 17 2022
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
+ * @version 1.15.3 | Tue May 24 2022
  * @license MIT
  */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -3157,7 +3156,6 @@ module.exports = g;
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global) {/**
  * @fileoverview The entry file of fullcalendar
- * @author NHN FE Development Lab
  */
 
 
@@ -3211,7 +3209,6 @@ module.exports = Calendar;
 "use strict";
 /**
  * @fileoverview Utility module for array sort, binary search.
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -3509,7 +3506,6 @@ module.exports = {
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global) {/**
  * @fileoverview Add autoscroll feature to elements that prevented text selection.
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -3767,7 +3763,6 @@ module.exports = AutoScroll;
 "use strict";
 /**
  * @fileoverview Common collections.
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -4173,7 +4168,6 @@ module.exports = Collection;
 "use strict";
 /**
  * @fileoverview common/general utilities.
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -4474,7 +4468,6 @@ module.exports = {
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global) {/**
  * @fileoverview datetime utility module
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -5145,7 +5138,6 @@ module.exports = datetime;
 "use strict";
 /**
  * @fileoverview Dirty flagging module for objects.
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -5362,7 +5354,6 @@ module.exports = dirty;
 /* eslint complexity: 0 */
 /**
  * @fileoverview Utility module for handling DOM events.
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -5792,7 +5783,6 @@ module.exports = domevent;
 /* eslint complexity: 0, no-shadow: 0, max-nested-callbacks: 0  */
 /**
  * @fileoverview Utility modules for manipulate DOM elements.
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -6457,7 +6447,6 @@ module.exports = domutil;
 "use strict";
 /**
  * @fileoverview Wrapper module for easy calc date object
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -6596,7 +6585,6 @@ module.exports = DW;
 "use strict";
 /**
  * @fileoverview Floating layer module
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -6918,7 +6906,6 @@ module.exports = intlUtil;
 "use strict";
 /**
  * @fileoverview Mixin module for models.
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -7084,7 +7071,6 @@ module.exports = model;
  * Class for represent two dimensional x, y coordinates.
  *
  * It suppliy a group of functions for manipulate coordinates.
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  * @example
  * var p = point(10, 10);
  * var r1 = p.add(Point(5, 5));
@@ -7433,7 +7419,6 @@ module.exports = Point;
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global) {/**
  * @fileoverview RequestAnimFrame
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -7502,7 +7487,6 @@ module.exports = {
 "use strict";
 /**
  * @fileoverview Sanitizer module in order to prevent XSS attacks.
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -7580,7 +7564,6 @@ module.exports = {
 "use strict";
 /**
  * @fileoverview timezone
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -8075,7 +8058,6 @@ module.exports = {
 "use strict";
 /**
  * @fileoverview Layout module that supplied split height, resize height features.
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -8514,7 +8496,6 @@ module.exports = VLayout;
 "use strict";
 /**
  * @fileoverview Panel class for VLayout module
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -8736,7 +8717,6 @@ module.exports = VPanel;
 "use strict";
 /**
  * @fileoverview Global configuration object module. This @echo syntax will change preprocess context. See gulpfile.js
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -8792,7 +8772,6 @@ module.exports = config;
 "use strict";
 /**
  * @fileoverview Base calendar controller
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -9307,7 +9286,6 @@ module.exports = Base;
 "use strict";
 /**
  * @fileoverview Core methods for schedule block placing
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -9618,7 +9596,6 @@ module.exports = Core;
 "use strict";
 /**
  * @fileoverview Controller mixin for Month View
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -9842,7 +9819,6 @@ module.exports = Month;
 /* eslint no-shadow: 0 */
 /**
  * @fileoverview Controller mixin modules for day views.
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -10243,7 +10219,6 @@ module.exports = Week;
 "use strict";
 /**
  * @fileoverview Factory module for control all other factory.
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -12251,7 +12226,6 @@ module.exports = Calendar;
 "use strict";
 /**
  * @fileoverview Controller factory module.
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -12308,7 +12282,6 @@ module.exports = function(options) {
 "use strict";
 /**
  * @fileoverview Month view factory module
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -12579,7 +12552,6 @@ module.exports = createMonthView;
 "use strict";
 /**
  * @fileoverview Factory module for WeekView
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -12962,7 +12934,6 @@ module.exports = function(baseController, layoutContainer, dragHandler, options,
 "use strict";
 /**
  * @fileoverview Click handle module for daygrid schedules
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -13106,7 +13077,6 @@ module.exports = DayGridClick;
 /* eslint no-shadow: 0 */
 /**
  * @fileoverview Base mixin object for handler/daygrid
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -13258,7 +13228,6 @@ module.exports = dayGridCore;
 "use strict";
 /**
  * @fileoverview Handler module for WeekdayInWeek view's creation actions.
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -13605,7 +13574,6 @@ module.exports = DayGridCreation;
 "use strict";
 /**
  * @fileoverview Guide element for DayGrid.Creation
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -13772,7 +13740,6 @@ module.exports = DayGridCreationGuide;
 "use strict";
 /**
  * @fileoverview Move handler for DayGrid view.
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -14066,7 +14033,6 @@ module.exports = DayGridMove;
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global) {/**
  * @fileoverview Effect module for DayGrid.Move
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -14352,7 +14318,6 @@ module.exports = DayGridMoveGuide;
 "use strict";
 /**
  * @fileoverview Resize handler module for DayGrid view.
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -14642,7 +14607,6 @@ module.exports = DayGridResize;
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global) {/**
  * @fileoverview Resize Guide module.
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -14812,7 +14776,6 @@ module.exports = DayGridResizeGuide;
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global) {/**
  * @fileoverview Drag handler for calendar.
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -14831,6 +14794,7 @@ var config = __webpack_require__(/*! ../config */ "./src/js/config.js");
  */
 function Drag(options, container) {
     domevent.on(container, 'mousedown', this._onMouseDown, this);
+    domevent.on(container, 'mousemove', this._onSimpleMouseMove, this);
 
     this.options = util.extend({
         distance: 10,
@@ -14875,6 +14839,7 @@ function Drag(options, container) {
  */
 Drag.prototype.destroy = function() {
     domevent.off(this.container, 'mousedown', this._onMouseDown, this);
+    domevent.off(this.container, 'mouseover', this._onMouseMove, this);
     this._isMoved = null;
     this.container = null;
 };
@@ -14959,6 +14924,27 @@ Drag.prototype._onMouseDown = function(mouseDownEvent) {
      * @property {MouseEvent} originEvent - original mouse event object.
      */
     this.fire('mousedown', this._dragStartEventData);
+};
+
+/**
+ * MouseOver DOM event handler.
+ * @param {MouseOver} mouseOverEvent mouseOverEvent event object.
+ */
+Drag.prototype._onSimpleMouseMove = function(mouseOverEvent) {
+    var eventData = this._getEventData(mouseOverEvent);
+
+    if (this._dragStartEventData) {
+        return;
+    }
+
+    /**
+     * mouseOverEvent event for firefox bug. cancelable.
+     * @event Drag#mouseDown
+     * @type {object}
+     * @property {HTMLElement} target - target element in this event.
+     * @property {MouseEvent} originEvent - original mouse event object.
+     */
+    this.fire('mousemove', eventData);
 };
 
 /**
@@ -15084,7 +15070,6 @@ module.exports = Drag;
 "use strict";
 /**
  * @fileoverview Click handler for month view
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -15188,7 +15173,6 @@ module.exports = MonthClick;
 /* eslint-disable complexity */
 /**
  * @fileoverview Module for calculate date by month view and mouse event object
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -15304,7 +15288,6 @@ module.exports = getMousePosDate;
 "use strict";
 /**
  * @fileoverview Creation handler for month view
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -15668,7 +15651,6 @@ module.exports = MonthCreation;
 "use strict";
 /**
  * @fileoverview Creation guide module for month view
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -15859,7 +15841,6 @@ module.exports = (Handlebars['default'] || Handlebars).template({"1":function(co
 "use strict";
 /**
  * @fileoverview Guide element controller for creation, resize in month view
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -16335,7 +16316,6 @@ module.exports = MonthGuide;
 "use strict";
 /**
  * @fileoverview Move handler for month view
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -16728,7 +16708,6 @@ module.exports = (Handlebars['default'] || Handlebars).template({"1":function(co
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global) {/**
  * @fileoverview Module for modification of guide element for move in month view
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -16936,7 +16915,6 @@ module.exports = MonthMoveGuide;
 "use strict";
 /**
  * @fileoverview Module for resize schedule in month view
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -17170,7 +17148,6 @@ module.exports = MonthResize;
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global) {/**
  * @fileoverview Module for modification of guide element in schedule resize
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -17298,7 +17275,6 @@ module.exports = MonthResizeGuide;
 "use strict";
 /**
  * @fileoverview Allday event click event hander module
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -17414,7 +17390,6 @@ module.exports = TimeClick;
 "use strict";
 /**
  * @fileoverview Dayname click event hander module
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -17516,7 +17491,6 @@ module.exports = DayNameClick;
 "use strict";
 /**
  * @fileoverview Core methods for dragging actions
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -17541,11 +17515,13 @@ var timeCore = {
     _calcGridYIndex: function(baseMil, height, y) {
         // get ratio from right expression > point.y : x = session.height : baseMil
         // and convert milliseconds value to hours.
-        var result = datetime.millisecondsTo('hour', (y * baseMil) / height),
-            floored = result | 0,
-            nearest = common.nearest(result - floored, [0, 1]);
+        var result = datetime.millisecondsTo('hour', (y * baseMil) / height);
+        var floored = result | 0;
+        // This is the fractions of an hour you want to be selectable on hover
+        var fractionsOfAHour = [0, 0.25, 0.5, 0.75, 1];
+        var nearest = common.nearest(result - floored, fractionsOfAHour);
 
-        return floored + (nearest ? 0.5 : 0);
+        return floored + nearest;
     },
 
     /**
@@ -17672,7 +17648,6 @@ module.exports = timeCore;
 "use strict";
 /**
  * @fileoverview Handling creation events from drag handler and time grid view
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -17751,6 +17726,7 @@ function TimeCreation(dragHandler, timeGridView, baseController, options) {
     this._disableClick = options.disableClick;
 
     dragHandler.on('dragStart', this._onDragStart, this);
+    dragHandler.on('mousemove', this._onMouseMove, this);
     dragHandler.on('click', this._onClick, this);
 
     if (this._disableDblClick) {
@@ -17841,6 +17817,35 @@ TimeCreation.prototype._onDragStart = function(dragStartEventData, overrideEvent
      * @property {number} nearestGridTimeY - time value for nearestGridY.
      */
     this.fire(overrideEventName || 'timeCreationDragstart', eventData);
+};
+
+/**
+ * Drag#mousemove event handler.
+ * @emits TimeCreation#timeCreationDragstart
+ * @param {object} mouseMoveEventData - Drag#mouseMove event data.
+ * @param {string} [overrideEventName] - override emitted event name when supplied.
+ * @param {function} [revise] - supply function for revise event data before emit.
+ */
+TimeCreation.prototype._onMouseMove = function(mouseMoveEventData, overrideEventName, revise) {
+    var target = mouseMoveEventData.target,
+        result = this.checkExpectedCondition(target),
+        getScheduleDataFunc,
+        eventData;
+
+    if (!result) {
+        return;
+    }
+
+    getScheduleDataFunc = this._getScheduleDataFunc = this._retriveScheduleData(result);
+    eventData = this._dragStart = getScheduleDataFunc(mouseMoveEventData.originEvent);
+
+    eventData = getScheduleDataFunc(mouseMoveEventData.originEvent);
+
+    if (revise) {
+        revise(eventData);
+    }
+
+    this.fire(overrideEventName || 'mousemove', eventData);
 };
 
 /**
@@ -18079,7 +18084,6 @@ module.exports = TimeCreation;
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global) {/**
  * @fileoverview Module for Time.Creation effect while dragging.
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -18138,7 +18142,8 @@ function TimeCreationGuide(timeCreation) {
     timeCreation.on({
         timeCreationDragstart: this._createGuideElement,
         timeCreationDrag: this._onDrag,
-        timeCreationClick: this._createGuideElement
+        timeCreationClick: this._createGuideElement,
+        mousemove: this._onMouseMove
     }, this);
 
     this.applyTheme(timeCreation.baseController.theme);
@@ -18262,7 +18267,7 @@ TimeCreationGuide.prototype._getStyleDataFunc = function(viewHeight, hourLength,
      * @returns {number[]} top, time
      */
     function getStyleData(scheduleData) {
-        var minMinutes = 30;
+        var minMinutes = 15;
         var gridY = scheduleData.nearestGridY,
             gridTimeY = scheduleData.nearestGridTimeY,
             gridEndTimeY = scheduleData.nearestGridEndTimeY || new TZDate(gridTimeY).addMinutes(minMinutes),
@@ -18286,7 +18291,6 @@ TimeCreationGuide.prototype._createGuideElement = function(dragStartEventData) {
     var relatedView = dragStartEventData.relatedView,
         hourStart = datetime.millisecondsFrom('hour', dragStartEventData.hourStart) || 0,
         unitData, styleFunc, styleData, result, top, height, start, end;
-
     unitData = this._styleUnit = this._getUnitData(relatedView);
     styleFunc = this._styleFunc = this._getStyleDataFunc.apply(this, unitData);
     styleData = this._styleStart = styleFunc(dragStartEventData);
@@ -18313,12 +18317,12 @@ TimeCreationGuide.prototype._createGuideElement = function(dragStartEventData) {
  * @param {object} dragEventData - drag schedule data.
  */
 TimeCreationGuide.prototype._onDrag = function(dragEventData) {
-    var minutes30 = 30;
+    var minutes15 = 15;
     var styleFunc = this._styleFunc,
         unitData = this._styleUnit,
         startStyle = this._styleStart,
         refreshGuideElement = this._refreshGuideElement.bind(this),
-        heightOfHalfHour,
+        heightOfQuarterHour,
         endStyle,
         result;
 
@@ -18326,22 +18330,22 @@ TimeCreationGuide.prototype._onDrag = function(dragEventData) {
         return;
     }
 
-    heightOfHalfHour = (unitData[4] / 2);
+    heightOfQuarterHour = (unitData[4] / 2) / 2;
     endStyle = styleFunc(dragEventData);
 
     if (endStyle[0] > startStyle[0]) {
         result = this._limitStyleData(
             startStyle[0],
-            (endStyle[0] - startStyle[0]) + heightOfHalfHour,
+            (endStyle[0] - startStyle[0]) + heightOfQuarterHour,
             startStyle[1],
-            new TZDate(endStyle[1]).addMinutes(minutes30)
+            new TZDate(endStyle[1]).addMinutes(minutes15)
         );
     } else {
         result = this._limitStyleData(
             endStyle[0],
-            (startStyle[0] - endStyle[0]) + heightOfHalfHour,
+            (startStyle[0] - endStyle[0]) + heightOfQuarterHour,
             endStyle[1],
-            new TZDate(startStyle[1]).addMinutes(minutes30)
+            new TZDate(startStyle[1]).addMinutes(minutes15)
         );
         result.push(true);
     }
@@ -18349,6 +18353,32 @@ TimeCreationGuide.prototype._onDrag = function(dragEventData) {
     reqAnimFrame.requestAnimFrame(function() {
         refreshGuideElement.apply(null, result);
     });
+};
+
+TimeCreationGuide.prototype._onMouseMove = function(dragEventData) {
+    var relatedView = dragEventData.relatedView,
+        hourStart = datetime.millisecondsFrom('hour', dragEventData.hourStart) || 0,
+        unitData, styleFunc, styleData, result, top, height, start, end;
+
+    unitData = this._styleUnit = this._getUnitData(relatedView);
+    styleFunc = this._styleFunc = this._getStyleDataFunc.apply(this, unitData);
+    styleData = this._styleStart = styleFunc(dragEventData);
+
+    start = new TZDate(styleData[1]).addMinutes(datetime.minutesFromHours(hourStart));
+    end = new TZDate(styleData[2]).addMinutes(datetime.minutesFromHours(hourStart));
+    top = styleData[0];
+    height = (unitData[4] * (end - start) / MIN60);
+
+    result = this._limitStyleData(
+        top,
+        height,
+        start,
+        end
+    );
+
+    this._refreshGuideElement.apply(this, result);
+    this.guideElement.style.pointerevents = 'none';
+    relatedView.container.appendChild(this.guideElement);
 };
 
 TimeCreationGuide.prototype.applyTheme = function(theme) {
@@ -18381,7 +18411,6 @@ module.exports = TimeCreationGuide;
 "use strict";
 /**
  * @fileoverview Handling move schedules from drag handler and time grid view
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -18767,7 +18796,6 @@ module.exports = TimeMove;
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global) {/**
  * @fileoverview Module for Time.Move effect while dragging.
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -19029,7 +19057,6 @@ module.exports = TimeMoveGuide;
 "use strict";
 /**
  * @fileoverview Handling resize schedules from drag handler and time grid view
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -19359,7 +19386,6 @@ module.exports = TimeResize;
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global) {/**
  * @fileoverview Module for Time.Resize effect while dragging.
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -19574,7 +19600,6 @@ module.exports = TimeResizeGuide;
 /* eslint complexity: 0 */
 /**
  * @fileoverview Model of schedule.
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -20053,7 +20078,6 @@ module.exports = Schedule;
 "use strict";
 /**
  * @fileoverview Model for views
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -20272,7 +20296,6 @@ module.exports = ScheduleViewModel;
 "use strict";
 /**
  * @fileoverview The standard theme
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -20407,7 +20430,6 @@ module.exports = theme;
 "use strict";
 /**
  * @fileoverview The all configuration of a theme
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -20518,7 +20540,6 @@ module.exports = Theme;
 "use strict";
 /**
  * @fileoverview The all configuration of a theme
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -20785,7 +20806,6 @@ module.exports = themeConfig;
 "use strict";
 /**
  * @fileoverview Layout view. wrap all view containers at outside.
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -20884,7 +20904,6 @@ module.exports = Layout;
 "use strict";
 /**
  * @fileoverview Month view
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -21238,7 +21257,6 @@ module.exports = Month;
 "use strict";
 /**
  * @fileoverview Floating layer for displaying schedule in specific date
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -21535,7 +21553,6 @@ module.exports = More;
 "use strict";
 /**
  * @fileoverview Monthday in month view
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -21727,7 +21744,6 @@ module.exports = WeekdayInMonth;
 "use strict";
 /**
  * @fileoverview Floating layer for writing new schedules
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -22543,7 +22559,6 @@ module.exports = ScheduleCreationPopup;
 /* eslint-disable vars-on-top */
 /**
  * @fileoverview Floating layer for showing detail schedule
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -22966,7 +22981,6 @@ module.exports = ScheduleDetailPopup;
 /* eslint complexity: 0 */
 /**
  * @fileoverview Helpers for handlebar templates.
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -26113,7 +26127,6 @@ module.exports = (Handlebars['default'] || Handlebars).template({"1":function(co
 "use strict";
 /**
  * @fileoverview The base class of views.
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -26339,7 +26352,6 @@ module.exports = View;
 "use strict";
 /**
  * @fileoverview DayGrid in weekly view
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -26671,7 +26683,6 @@ module.exports = DayGrid;
 "use strict";
 /**
  * @fileoverview Weekday view for week
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -26798,7 +26809,6 @@ module.exports = DayGridSchedule;
 "use strict";
 /**
  * @fileoverview View for rendering daynames
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -26986,7 +26996,6 @@ module.exports = DayName;
 "use strict";
 /**
  * @fileoverview View of time.
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -27344,7 +27353,6 @@ module.exports = Time;
 "use strict";
 /**
  * @fileoverview View for rendered schedules by times.
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -28082,7 +28090,6 @@ module.exports = TimeGrid;
 "use strict";
 /**
  * @fileoverview View of days UI.
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 
@@ -28321,7 +28328,6 @@ module.exports = Week;
 "use strict";
 /**
  * @fileoverview Weekday view
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
  */
 
 

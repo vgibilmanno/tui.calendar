@@ -1,7 +1,6 @@
 /*!
  * TOAST UI Calendar
- * @version 1.15.3 | Thu Feb 17 2022
- * @author NHN FE Development Lab <dl_javascript@nhn.com>
+ * @version 1.15.3 | Tue May 24 2022
  * @license MIT
  */
 .tui-full-calendar-layout {
@@ -490,6 +489,7 @@
   right: 10px;
   left: 1px;
   padding: 3px;
+  pointer-events: none;
 }
 .tui-full-calendar-time-guide-move .tui-full-calendar-time-schedule,
 .tui-full-calendar-time-guide-resize .tui-full-calendar-time-schedule,
