@@ -246,7 +246,7 @@ TimeCreation.prototype._createSchedule = function(eventData) {
         nearestGridTimeY = eventData.nearestGridTimeY,
         nearestGridEndTimeY = eventData.nearestGridEndTimeY
             ? eventData.nearestGridEndTimeY
-            : new TZDate(nearestGridTimeY).addMinutes(30),
+            : new TZDate(nearestGridTimeY).addMinutes(15),
         baseDate,
         dateStart,
         dateEnd,
@@ -307,7 +307,7 @@ TimeCreation.prototype._onDragEnd = function(dragEndEventData) {
             dragStart.nearestGridTimeY,
             eventData.nearestGridTimeY
         ].sort(array.compare.num.asc);
-        range[1].addMinutes(30);
+        range[1].addMinutes(15);
 
         eventData.createRange = range;
 
