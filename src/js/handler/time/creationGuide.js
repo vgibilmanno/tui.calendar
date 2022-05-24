@@ -1,7 +1,6 @@
 /**
  * @fileoverview Module for Time.Creation effect while dragging.
  */
-/* eslint-disable */
 'use strict';
 
 var common = require('../../common/common');
@@ -60,7 +59,7 @@ function TimeCreationGuide(timeCreation) {
         timeCreationDragstart: this._createGuideElement,
         timeCreationDrag: this._onDrag,
         timeCreationClick: this._createGuideElement,
-        mousemove: this._onMouseMove,
+        mousemove: this._onMouseMove
     }, this);
 
     this.applyTheme(timeCreation.baseController.theme);
@@ -272,7 +271,7 @@ TimeCreationGuide.prototype._onDrag = function(dragEventData) {
     });
 };
 
-TimeCreationGuide.prototype._onMouseMove = function(dragEventData) { 
+TimeCreationGuide.prototype._onMouseMove = function(dragEventData) {
     var relatedView = dragEventData.relatedView,
         hourStart = datetime.millisecondsFrom('hour', dragEventData.hourStart) || 0,
         unitData, styleFunc, styleData, result, top, height, start, end;
@@ -294,7 +293,7 @@ TimeCreationGuide.prototype._onMouseMove = function(dragEventData) {
     );
 
     this._refreshGuideElement.apply(this, result);
-    this.guideElement.style.pointerevents = "none";
+    this.guideElement.style.pointerevents = 'none';
     relatedView.container.appendChild(this.guideElement);
 };
 

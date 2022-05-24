@@ -1,7 +1,6 @@
 /**
  * @fileoverview Drag handler for calendar.
  */
-/* eslint-disable */
 'use strict';
 
 var util = require('tui-code-snippet');
@@ -155,10 +154,13 @@ Drag.prototype._onMouseDown = function(mouseDownEvent) {
  * MouseOver DOM event handler.
  * @param {MouseOver} mouseOverEvent mouseOverEvent event object.
  */
- Drag.prototype._onSimpleMouseMove = function(mouseOverEvent) {
-     if (this._dragStartEventData) return
+Drag.prototype._onSimpleMouseMove = function(mouseOverEvent) {
     var eventData = this._getEventData(mouseOverEvent);
-    
+
+    if (this._dragStartEventData) {
+        return;
+    }
+
     /**
      * mouseOverEvent event for firefox bug. cancelable.
      * @event Drag#mouseDown

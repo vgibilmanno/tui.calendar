@@ -1,7 +1,6 @@
 /**
  * @fileoverview Handling creation events from drag handler and time grid view
  */
-/* eslint-disable */
 'use strict';
 
 var util = require('tui-code-snippet');
@@ -175,25 +174,25 @@ TimeCreation.prototype._onDragStart = function(dragStartEventData, overrideEvent
 /**
  * Drag#mousemove event handler.
  * @emits TimeCreation#timeCreationDragstart
- * @param {object} dragStartEventData - Drag#dragStart event data.
+ * @param {object} mouseMoveEventData - Drag#mouseMove event data.
  * @param {string} [overrideEventName] - override emitted event name when supplied.
  * @param {function} [revise] - supply function for revise event data before emit.
  */
- TimeCreation.prototype._onMouseMove = function(dragEventData, overrideEventName, revise) {
-    var target = dragEventData.target,
+TimeCreation.prototype._onMouseMove = function(mouseMoveEventData, overrideEventName, revise) {
+    var target = mouseMoveEventData.target,
         result = this.checkExpectedCondition(target),
         getScheduleDataFunc,
         eventData;
-        
+
     if (!result) {
         return;
     }
 
     getScheduleDataFunc = this._getScheduleDataFunc = this._retriveScheduleData(result);
-    eventData = this._dragStart = getScheduleDataFunc(dragEventData.originEvent);
+    eventData = this._dragStart = getScheduleDataFunc(mouseMoveEventData.originEvent);
 
-    eventData = getScheduleDataFunc(dragEventData.originEvent);
-    
+    eventData = getScheduleDataFunc(mouseMoveEventData.originEvent);
+
     if (revise) {
         revise(eventData);
     }
