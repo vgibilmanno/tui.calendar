@@ -1,7 +1,7 @@
 {
   "name": "tui-calendar",
   "author": "NHN Cloud. FE Development Lab <dl_javascript@nhn.com>",
-  "version": "1.15.7",
+  "version": "1.15.8",
   "main": "dist/tui-calendar.js",
   "types": "index.d.ts",
   "license": "MIT",

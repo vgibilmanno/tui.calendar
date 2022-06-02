@@ -19,6 +19,7 @@ var config = require('../config');
 function Drag(options, container) {
     domevent.on(container, 'mousedown', this._onMouseDown, this);
     domevent.on(container, 'mousemove', this._onSimpleMouseMove, this);
+    domevent.on(container, 'contextmenu', this._onContextMenu, this);
 
     this.options = util.extend({
         distance: 10,
@@ -63,7 +64,8 @@ function Drag(options, container) {
  */
 Drag.prototype.destroy = function() {
     domevent.off(this.container, 'mousedown', this._onMouseDown, this);
-    domevent.off(this.container, 'mouseover', this._onMouseMove, this);
+    domevent.off(this.container, 'mouseover', this._onSimpleMouseMove, this);
+    domevent.off(this.container, 'contextmenu', this._onContextMenu, this);
     this._isMoved = null;
     this.container = null;
 };
@@ -169,6 +171,26 @@ Drag.prototype._onSimpleMouseMove = function(mouseOverEvent) {
      * @property {MouseEvent} originEvent - original mouse event object.
      */
     this.fire('mousemove', eventData);
+};
+
+/**
+ * MouseOver DOM event handler.
+ * @param {ContextMenu} contextMenuEvent contextMenuEvent event object.
+ */
+Drag.prototype._onContextMenu = function(contextMenuEvent) {
+    var eventData = this._getEventData(contextMenuEvent);
+    if (this._dragStartEventData) {
+        return;
+    }
+
+    /**
+     * mouseOverEvent event for firefox bug. cancelable.
+     * @event Drag#mouseDown
+     * @type {object}
+     * @property {HTMLElement} target - target element in this event.
+     * @property {MouseEvent} originEvent - original mouse event object.
+     */
+    this.fire('contextmenu', eventData);
 };
 
 /**

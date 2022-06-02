@@ -32,7 +32,8 @@ function TimeClick(dragHandler, timeGridView, baseController) {
     this.baseController = baseController;
 
     dragHandler.on({
-        'click': this._onClick
+        'click': this._onClick,
+        'contextmenu': this._onContextMenu
     }, this);
 }
 
@@ -94,6 +95,36 @@ TimeClick.prototype._onClick = function(clickEvent) {
         self.fire('clickSchedule', {
             schedule: schedule,
             event: clickEvent.originEvent
+        });
+    });
+};
+
+/**
+ * Contextmenu event hander
+ * @param {object} contextmenuEvent - click event from {@link Drag}
+ * @emits TimeClick#ContextMenu
+ */
+TimeClick.prototype._onContextMenu = function(contextmenuEvent) {
+    var self = this,
+        target = contextmenuEvent.target,
+        timeView = this.checkExpectCondition(target),
+        blockElement = domutil.closest(target, config.classname('.time-date-schedule-block')),
+        schedulesCollection = this.baseController.schedules;
+
+    if (!timeView || !blockElement) {
+        return;
+    }
+
+    schedulesCollection.doWhenHas(domutil.getData(blockElement, 'id'), function(schedule) {
+        /**
+         * @events TimeClick#clickSchedule
+         * @type {object}
+         * @property {Schedule} schedule - schedule instance
+         * @property {MouseEvent} event - MouseEvent object
+         */
+        self.fire('contextmenuSchedule', {
+            schedule: schedule,
+            event: contextmenuEvent.originEvent
         });
     });
 };

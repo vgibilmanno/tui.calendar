@@ -1,6 +1,6 @@
 /*!
  * TOAST UI Calendar
- * @version 1.15.7 | Tue May 24 2022
+ * @version 1.15.8 | Thu Jun 02 2022
  * @license MIT
  */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -14795,6 +14795,7 @@ var config = __webpack_require__(/*! ../config */ "./src/js/config.js");
 function Drag(options, container) {
     domevent.on(container, 'mousedown', this._onMouseDown, this);
     domevent.on(container, 'mousemove', this._onSimpleMouseMove, this);
+    domevent.on(container, 'contextmenu', this._onContextMenu, this);
 
     this.options = util.extend({
         distance: 10,
@@ -14839,7 +14840,8 @@ function Drag(options, container) {
  */
 Drag.prototype.destroy = function() {
     domevent.off(this.container, 'mousedown', this._onMouseDown, this);
-    domevent.off(this.container, 'mouseover', this._onMouseMove, this);
+    domevent.off(this.container, 'mouseover', this._onSimpleMouseMove, this);
+    domevent.off(this.container, 'contextmenu', this._onContextMenu, this);
     this._isMoved = null;
     this.container = null;
 };
@@ -14945,6 +14947,26 @@ Drag.prototype._onSimpleMouseMove = function(mouseOverEvent) {
      * @property {MouseEvent} originEvent - original mouse event object.
      */
     this.fire('mousemove', eventData);
+};
+
+/**
+ * MouseOver DOM event handler.
+ * @param {ContextMenu} contextMenuEvent contextMenuEvent event object.
+ */
+Drag.prototype._onContextMenu = function(contextMenuEvent) {
+    var eventData = this._getEventData(contextMenuEvent);
+    if (this._dragStartEventData) {
+        return;
+    }
+
+    /**
+     * mouseOverEvent event for firefox bug. cancelable.
+     * @event Drag#mouseDown
+     * @type {object}
+     * @property {HTMLElement} target - target element in this event.
+     * @property {MouseEvent} originEvent - original mouse event object.
+     */
+    this.fire('contextmenu', eventData);
 };
 
 /**
@@ -17307,7 +17329,8 @@ function TimeClick(dragHandler, timeGridView, baseController) {
     this.baseController = baseController;
 
     dragHandler.on({
-        'click': this._onClick
+        'click': this._onClick,
+        'contextmenu': this._onContextMenu
     }, this);
 }
 
@@ -17369,6 +17392,36 @@ TimeClick.prototype._onClick = function(clickEvent) {
         self.fire('clickSchedule', {
             schedule: schedule,
             event: clickEvent.originEvent
+        });
+    });
+};
+
+/**
+ * Contextmenu event hander
+ * @param {object} contextmenuEvent - click event from {@link Drag}
+ * @emits TimeClick#ContextMenu
+ */
+TimeClick.prototype._onContextMenu = function(contextmenuEvent) {
+    var self = this,
+        target = contextmenuEvent.target,
+        timeView = this.checkExpectCondition(target),
+        blockElement = domutil.closest(target, config.classname('.time-date-schedule-block')),
+        schedulesCollection = this.baseController.schedules;
+
+    if (!timeView || !blockElement) {
+        return;
+    }
+
+    schedulesCollection.doWhenHas(domutil.getData(blockElement, 'id'), function(schedule) {
+        /**
+         * @events TimeClick#clickSchedule
+         * @type {object}
+         * @property {Schedule} schedule - schedule instance
+         * @property {MouseEvent} event - MouseEvent object
+         */
+        self.fire('contextmenuSchedule', {
+            schedule: schedule,
+            event: contextmenuEvent.originEvent
         });
     });
 };
