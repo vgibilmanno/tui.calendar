@@ -1,6 +1,6 @@
 /*!
  * TOAST UI Calendar
- * @version 1.15.8 | Thu Jun 02 2022
+ * @version 1.15.9 | Thu Jun 02 2022
  * @license MIT
  */
 (function webpackUniversalModuleDefinition(root, factory) {
