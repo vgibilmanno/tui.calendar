@@ -1,4 +1,4 @@
-// Type definitions for TOAST UI Calendar v1.15.11
+// Type definitions for TOAST UI Calendar v1.15.12
 // TypeScript Version: 3.2.1
 
 export type DateType = string | Date | TZDate;
@@ -269,6 +269,7 @@ export interface ISchedule {
     color?: string;
     bgColor?: string;
     dragBgColor?: string;
+    dragFgColor?: string;
     borderColor?: string;
     customStyle?: string;
     raw?: {
