@@ -1,6 +1,6 @@
 /*!
  * TOAST UI Calendar
- * @version 1.15.10 | Thu Jun 02 2022
+ * @version 1.15.11 | Tue Jun 07 2022
  * @license MIT
  */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -19810,6 +19810,12 @@ function Schedule() {
     this.dragBgColor = '#a1b56c';
 
     /**
+     * schedule foreground color when dragging it
+     * @type {string}
+     */
+    this.dragFgColor = '#FFFFFF';
+
+    /**
      * schedule left border color
      * @type {string}
      */
@@ -19953,6 +19959,7 @@ Schedule.prototype.init = function(options) {
     this.color = options.color || this.color;
     this.bgColor = options.bgColor || this.bgColor;
     this.dragBgColor = options.dragBgColor || this.dragBgColor;
+    this.dragFgColor = options.dragFgColor || this.dragFgColor;
     this.borderColor = options.borderColor || this.borderColor;
     this.calendarId = options.calendarId || '';
     this.category = options.category || '';
@@ -26076,7 +26083,9 @@ module.exports = (Handlebars['default'] || Handlebars).template({"1":function(co
     + alias4(((helper = (helper = lookupProperty(helpers,"CSS_PREFIX") || (depth0 != null ? lookupProperty(depth0,"CSS_PREFIX") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data,"loc":{"start":{"line":2,"column":16},"end":{"line":2,"column":30}}}) : helper)))
     + "time-schedule "
     + alias4(((helper = (helper = lookupProperty(helpers,"CSS_PREFIX") || (depth0 != null ? lookupProperty(depth0,"CSS_PREFIX") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"CSS_PREFIX","hash":{},"data":data,"loc":{"start":{"line":2,"column":44},"end":{"line":2,"column":58}}}) : helper)))
-    + "time-date-schedule-block-focused\" style=\"color: #ffffff; background-color:"
+    + "time-date-schedule-block-focused\" style=\"color:"
+    + alias4(alias5(((stack1 = (depth0 != null ? lookupProperty(depth0,"model") : depth0)) != null ? lookupProperty(stack1,"dragFgColor") : stack1), depth0))
+    + "; background-color:"
     + alias4(alias5(((stack1 = (depth0 != null ? lookupProperty(depth0,"model") : depth0)) != null ? lookupProperty(stack1,"dragBgColor") : stack1), depth0))
     + ";\">\n"
     + ((stack1 = lookupProperty(helpers,"if").call(alias1,(depth0 != null ? lookupProperty(depth0,"hasGoingDuration") : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":3,"column":8},"end":{"line":5,"column":15}}})) != null ? stack1 : "")

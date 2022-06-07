@@ -132,6 +132,12 @@ function Schedule() {
     this.dragBgColor = '#a1b56c';
 
     /**
+     * schedule foreground color when dragging it
+     * @type {string}
+     */
+    this.dragFgColor = '#FFFFFF';
+
+    /**
      * schedule left border color
      * @type {string}
      */
@@ -275,6 +281,7 @@ Schedule.prototype.init = function(options) {
     this.color = options.color || this.color;
     this.bgColor = options.bgColor || this.bgColor;
     this.dragBgColor = options.dragBgColor || this.dragBgColor;
+    this.dragFgColor = options.dragFgColor || this.dragFgColor;
     this.borderColor = options.borderColor || this.borderColor;
     this.calendarId = options.calendarId || '';
     this.category = options.category || '';
