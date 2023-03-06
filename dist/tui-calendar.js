@@ -1,6 +1,6 @@
 /*!
  * TOAST UI Calendar
- * @version 1.15.13 | Tue Jun 07 2022
+ * @version 1.15.14 | Mon Mar 06 2023
  * @license MIT
  */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -8870,13 +8870,6 @@ function Base(options) {
             var model = viewModel.model;
 
             if (viewModel.model.isAllDay) {
-                return 'allday';
-            }
-
-            if (
-                model.category === 'time' &&
-                model.end - model.start > datetime.MILLISECONDS_PER_DAY
-            ) {
                 return 'allday';
             }
 
