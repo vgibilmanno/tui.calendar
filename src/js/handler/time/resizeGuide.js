@@ -131,8 +131,8 @@ function RefreshGuideElementParameters(guideHeight, minTimeHeight, timeHeight, t
 TimeResizeGuide.prototype._refreshGuideElement = function(params, start, end) {
     var guideElement = this.guideElement;
     var timeElement;
-    
-    if (!params.guideElement) {
+
+    if (!guideElement) {
         return;
     }
 
@@ -248,7 +248,7 @@ TimeResizeGuide.prototype._onDrag = function(dragEventData) {
         top = top + gridYOffsetPixel;
         height = (this._startHeightPixel - gridYOffsetPixel);
     }
-    
+
     params = new RefreshGuideElementParameters(height, timeMinHeight, timeHeight, top);
     this._refreshGuideElement(params, start, end);
 };
