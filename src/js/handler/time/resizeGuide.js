@@ -62,6 +62,11 @@ function TimeResizeGuide(timeResize) {
      */
     this._startDrag = null;
 
+    /**
+     * @type {boolean}
+     */
+    this._isResizeHandleTop = false;
+
     timeResize.on({
         'timeResizeDragstart': this._onDragStart,
         'timeResizeDrag': this._onDrag,
@@ -103,32 +108,46 @@ TimeResizeGuide.prototype._clearGuideElement = function() {
 };
 
 /**
- * Refresh guide element
+ * Class for RefreshGuideElementParameters.
+ * @constructor
  * @param {number} guideHeight - guide element's style height.
  * @param {number} minTimeHeight - time element's min height
  * @param {number} timeHeight - time element's height.
+ * @param {number} top - number that tells where the schedule should be placed relative to top of grid
+ */
+function RefreshGuideElementParameters(guideHeight, minTimeHeight, timeHeight, top) {
+    this.guideHeight = guideHeight;
+    this.minTimeHeight = minTimeHeight;
+    this.timeHeight = timeHeight;
+    this.top = top;
+}
+
+/**
+ * Refresh guide element
+ * @param {RefreshGuideElementParameters} params - instance of RefreshGuideElementParameters.
  * @param {TZDate} start - relative time value of dragstart point
  * @param {TZDate} end - relative time value of dragend point
  */
-TimeResizeGuide.prototype._refreshGuideElement = function(guideHeight, minTimeHeight, timeHeight, start, end) {
+TimeResizeGuide.prototype._refreshGuideElement = function(params, start, end) {
     var guideElement = this.guideElement;
     var timeElement;
-
-    if (!guideElement) {
+    
+    if (!params.guideElement) {
         return;
     }
 
-    timeElement = domutil.find(config.classname('.time-schedule-content-time'), guideElement);
+    timeElement = domutil.find(config.classname('.time-schedule-content-time'), params.guideElement);
 
     reqAnimFrame.requestAnimFrame(function() {
-        guideElement.style.height = guideHeight + 'px';
+        guideElement.style.height = params.guideHeight + 'px';
         guideElement.style.display = 'block';
 
         if (timeElement) {
-            timeElement.style.height = timeHeight + 'px';
-            timeElement.style.minHeight = minTimeHeight + 'px';
+            timeElement.style.height = params.timeHeight + 'px';
+            timeElement.style.minHeight = params.minTimeHeight + 'px';
             timeElement.innerHTML = datetime.format(start, 'HH:mm') +
-            ' - ' + datetime.format(end, 'HH:mm');
+                ' - ' + datetime.format(end, 'HH:mm');
+            domutil.setPosition(guideElement, 0, params.top);
         }
     });
 };
@@ -144,6 +163,9 @@ TimeResizeGuide.prototype._onDragStart = function(dragStartEventData) {
         ),
         schedule = dragStartEventData.schedule,
         guideElement;
+
+    var isTopTimeResizeHandle = domutil.hasClass(dragStartEventData.target, config.classname('time-resize-handle-top'));
+    this._isResizeHandleTop = isTopTimeResizeHandle;
 
     if (!util.browser.msie) {
         domutil.addClass(global.document.body, config.classname('resizing'));
@@ -179,7 +201,6 @@ TimeResizeGuide.prototype._onDrag = function(dragEventData) {
         guideElement = this.guideElement,
         guideTop = parseFloat(guideElement.style.top),
         gridYOffset = dragEventData.nearestGridY - this._startGridY,
-        // hourLength : viewHeight = gridYOffset : X;
         gridYOffsetPixel = ratio(hourLength, viewHeight, gridYOffset),
         goingDuration = this._schedule.goingDuration,
         modelDuration = this._schedule.duration() / datetime.MILLISECONDS_PER_MINUTES,
@@ -190,26 +211,46 @@ TimeResizeGuide.prototype._onDrag = function(dragEventData) {
         timeMinHeight,
         minHeight,
         maxHeight,
-        height;
+        top,
+        start,
+        end,
+        height,
+        params;
 
-    var start = new TZDate(this._schedule.getStarts());
-    var end = new TZDate(this._schedule.getEnds()).addMinutes(datetime.minutesFromHours(gridDiff));
+    top = this._startTopPixel;
+    if (!this._isResizeHandleTop) {
+        start = new TZDate(this._schedule.getStarts());
+        end = new TZDate(this._schedule.getEnds()).addMinutes(datetime.minutesFromHours(gridDiff));
+        if (end.getTime() <= start.getTime()) {
+            return;
+        }
 
-    height = (this._startHeightPixel + gridYOffsetPixel);
-    // at least large than 15min from schedule start time.
-    minHeight = guideTop + ratio(hourLength, viewHeight, 0.25);
-    minHeight -= this._startTopPixel;
-    timeMinHeight = minHeight;
-    minHeight += ratio(minutesLength, viewHeight, goingDuration) + ratio(minutesLength, viewHeight, comingDuration);
-    // smaller than 24h
-    maxHeight = viewHeight - guideTop;
+        height = (this._startHeightPixel + gridYOffsetPixel);
 
-    height = Math.max(height, minHeight);
-    height = Math.min(height, maxHeight);
+        // at least large than 15min from schedule start time.
+        minHeight = guideTop + ratio(hourLength, viewHeight, 0.25);
+        minHeight -= this._startTopPixel;
+        timeMinHeight = minHeight;
+        minHeight += ratio(minutesLength, viewHeight, goingDuration) + ratio(minutesLength, viewHeight, comingDuration);
+        // smaller than 24h
+        maxHeight = viewHeight - guideTop;
 
-    timeHeight = ratio(minutesLength, viewHeight, modelDuration) + gridYOffsetPixel;
+        height = Math.max(height, minHeight);
+        height = Math.min(height, maxHeight);
+        timeHeight = ratio(minutesLength, viewHeight, modelDuration) + gridYOffsetPixel;
+    } else {
+        start = new TZDate(this._schedule.getStarts()).addMinutes(datetime.minutesFromHours(gridDiff));
+        end = new TZDate(this._schedule.getEnds());
+        if (start.getTime() >= end.getTime()) {
+            return;
+        }
 
-    this._refreshGuideElement(height, timeMinHeight, timeHeight, start, end);
+        top = top + gridYOffsetPixel;
+        height = (this._startHeightPixel - gridYOffsetPixel);
+    }
+    
+    params = new RefreshGuideElementParameters(height, timeMinHeight, timeHeight, top);
+    this._refreshGuideElement(params, start, end);
 };
 
 module.exports = TimeResizeGuide;

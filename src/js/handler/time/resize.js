@@ -52,6 +52,11 @@ function TimeResize(dragHandler, timeGridView, baseController) {
      */
     this._guide = new TimeResizeGuide(this);
 
+    /**
+     * @type {boolean}
+     */
+    this._isResizeHandleTop = false;
+
     dragHandler.on('dragStart', this._onDragStart, this);
 }
 
@@ -71,9 +76,14 @@ TimeResize.prototype.destroy = function() {
  */
 TimeResize.prototype.checkExpectCondition = function(target) {
     var container,
-        matches;
+        matches,
+        isBottomTimeResizeHandle,
+        isTopTimeResizeHandle;
 
-    if (!domutil.hasClass(target, config.classname('time-resize-handle'))) {
+    isBottomTimeResizeHandle = domutil.hasClass(target, config.classname('time-resize-handle'));
+    isTopTimeResizeHandle = domutil.hasClass(target, config.classname('time-resize-handle-top'));
+    this._isResizeHandleTop = isTopTimeResizeHandle;
+    if (!isBottomTimeResizeHandle && !isTopTimeResizeHandle) {
         return false;
     }
 
@@ -195,6 +205,8 @@ TimeResize.prototype._updateSchedule = function(scheduleData) {
         relatedView = scheduleData.relatedView,
         dateEnd,
         newEnds,
+        dateStart,
+        newStarts,
         baseDate;
     var changes;
 
@@ -205,38 +217,55 @@ TimeResize.prototype._updateSchedule = function(scheduleData) {
     timeDiff -= datetime.millisecondsFrom('minutes', 15);
 
     baseDate = new TZDate(relatedView.getDate());
-    dateEnd = datetime.end(baseDate);
-    newEnds = new TZDate(schedule.getEnds()).addMilliseconds(timeDiff);
+    if (!this._isResizeHandleTop) {
+        dateEnd = datetime.end(baseDate);
+        newEnds = new TZDate(schedule.getEnds()).addMilliseconds(timeDiff);
 
-    if (newEnds > dateEnd) {
-        newEnds = new TZDate(dateEnd);
+        if (newEnds > dateEnd) {
+            newEnds = new TZDate(dateEnd);
+        }
+
+        if (newEnds.getTime() - schedule.getStarts().getTime() < datetime.millisecondsFrom('minutes', 15)) {
+            newEnds = new TZDate(schedule.getStarts()).addMinutes(15);
+        }
+
+        changes = common.getScheduleChanges(
+            schedule,
+            ['end'],
+            {end: newEnds}
+        );
+
+        this.fire('beforeUpdateSchedule', {
+            schedule: schedule,
+            changes: changes,
+            start: schedule.getStarts(),
+            end: newEnds
+        });
+    } else {
+        dateStart = datetime.start(baseDate);
+        newStarts = new TZDate(schedule.getStarts()).addMilliseconds(timeDiff);
+
+        if (newStarts <= dateStart) {
+            newStarts = new TZDate(dateStart);
+        }
+
+        if (schedule.getEnds().getTime() - newStarts.getTime() < datetime.millisecondsFrom('minutes', 15)) {
+            newStarts = new TZDate(schedule.getEnds()).addMinutes(-15);
+        }
+
+        changes = common.getScheduleChanges(
+            schedule,
+            ['start'],
+            {start: newStarts}
+        );
+
+        this.fire('beforeUpdateSchedule', {
+            schedule: schedule,
+            changes: changes,
+            start: newStarts,
+            end: schedule.getEnds()
+        });
     }
-
-    if (newEnds.getTime() - schedule.getStarts().getTime() < datetime.millisecondsFrom('minutes', 15)) {
-        newEnds = new TZDate(schedule.getStarts()).addMinutes(15);
-    }
-
-    changes = common.getScheduleChanges(
-        schedule,
-        ['end'],
-        {end: newEnds}
-    );
-
-    /**
-     * @event TimeResize#beforeUpdateSchedule
-     * @type {object}
-     * @property {Schedule} schedule - The original schedule instance
-     * @property {Date} start - Deprecated: start time to update
-     * @property {Date} end - Deprecated: end time to update
-     * @property {object} changes - end time to update
-     *  @property {date} end - end time to update
-     */
-    this.fire('beforeUpdateSchedule', {
-        schedule: schedule,
-        changes: changes,
-        start: schedule.getStarts(),
-        end: newEnds
-    });
 };
 
 /**

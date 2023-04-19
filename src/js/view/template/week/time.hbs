@@ -9,6 +9,7 @@
                     padding-left: {{@root.styles.paddingLeft}};
                 {{/fi}}
             ">
+            <div class="{{CSS_PREFIX}}time-resize-handle-top handle-x" style="margin-left: {{@root.styles.paddingLeft}};">&nbsp;</div>
             <div data-schedule-id="{{model.id}}" data-calendar-id="{{model.calendarId}}" class="{{CSS_PREFIX}}time-schedule {{#if model.isFocused}}{{CSS_PREFIX}}time-schedule-focused {{/if}}"
                 style="
                 {{#unless croppedEnd}}

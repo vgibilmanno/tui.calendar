@@ -1,6 +1,6 @@
 /*!
  * TOAST UI Calendar
- * @version 1.15.14 | Mon Mar 06 2023
+ * @version 1.15.15 | Wed Apr 19 2023
  * @license MIT
  */
 .tui-full-calendar-layout {
@@ -483,6 +483,18 @@
   color: #fff;
   cursor: row-resize;
   background-position: center top;
+}
+.tui-full-calendar-time-resize-handle-top {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  left: 0px;
+  height: 5px;
+  text-align: center;
+  color: #fff;
+  cursor: row-resize;
+  background-position: center top;
+  z-index: 1;
 }
 .tui-full-calendar-time-guide-creation {
   position: absolute;
