@@ -1,6 +1,6 @@
 /*!
  * TOAST UI Calendar
- * @version 1.15.15 | Wed Apr 19 2023
+ * @version 1.15.16 | Wed Apr 19 2023
  * @license MIT
  */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -19623,7 +19623,7 @@ TimeResizeGuide.prototype._refreshGuideElement = function(params, start, end) {
         return;
     }
 
-    timeElement = domutil.find(config.classname('.time-schedule-content-time'), params.guideElement);
+    timeElement = domutil.find(config.classname('.time-schedule-content-time'), guideElement);
 
     reqAnimFrame.requestAnimFrame(function() {
         guideElement.style.height = params.guideHeight + 'px';

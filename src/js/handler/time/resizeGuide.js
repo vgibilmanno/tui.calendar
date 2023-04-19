@@ -136,7 +136,7 @@ TimeResizeGuide.prototype._refreshGuideElement = function(params, start, end) {
         return;
     }
 
-    timeElement = domutil.find(config.classname('.time-schedule-content-time'), params.guideElement);
+    timeElement = domutil.find(config.classname('.time-schedule-content-time'), guideElement);
 
     reqAnimFrame.requestAnimFrame(function() {
         guideElement.style.height = params.guideHeight + 'px';
