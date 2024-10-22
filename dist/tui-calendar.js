@@ -1,6 +1,6 @@
 /*!
  * TOAST UI Calendar
- * @version 1.15.17 | Tue Oct 22 2024
+ * @version 1.15.18 | Tue Oct 22 2024
  * @license MIT
  */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -17923,7 +17923,7 @@ var TimeCreationGuide = __webpack_require__(/*! ./creationGuide */ "./src/js/han
 var TZDate = __webpack_require__(/*! ../../common/timezone */ "./src/js/common/timezone.js").Date;
 var timeCore = __webpack_require__(/*! ./core */ "./src/js/handler/time/core.js");
 
-var CLICK_DELAY = 300;
+var CLICK_DELAY = 100;
 
 /**
  * @constructor

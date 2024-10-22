@@ -14,7 +14,7 @@ var TimeCreationGuide = require('./creationGuide');
 var TZDate = require('../../common/timezone').Date;
 var timeCore = require('./core');
 
-var CLICK_DELAY = 300;
+var CLICK_DELAY = 100;
 
 /**
  * @constructor
