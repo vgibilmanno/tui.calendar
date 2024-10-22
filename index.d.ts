@@ -29,6 +29,12 @@ export interface IEventScheduleObject {
     schedule: ISchedule;
 }
 
+export interface IEventTimeViewObject {
+    start: TZDate;
+    end: TZDate;
+    event: PointerEvent;
+}
+
 export interface ITimeCreationGuide {
     guideElement: HTMLElement;
     guideTimeElement: HTMLElement;

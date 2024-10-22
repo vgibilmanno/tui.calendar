@@ -403,6 +403,7 @@ TimeCreation.prototype._onContextmenu = function(contextmenuEventData) {
     setTimeout(function() {
         if (self._requestOnClick) {
             self.fire('contextmenu', {
+                event: contextmenuEventData.originEvent,
                 start: start,
                 end: end
             });

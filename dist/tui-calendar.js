@@ -1,6 +1,6 @@
 /*!
  * TOAST UI Calendar
- * @version 1.15.18 | Tue Oct 22 2024
+ * @version 1.15.19 | Tue Oct 22 2024
  * @license MIT
  */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -18312,6 +18312,7 @@ TimeCreation.prototype._onContextmenu = function(contextmenuEventData) {
     setTimeout(function() {
         if (self._requestOnClick) {
             self.fire('contextmenu', {
+                event: contextmenuEventData.originEvent,
                 start: start,
                 end: end
             });
