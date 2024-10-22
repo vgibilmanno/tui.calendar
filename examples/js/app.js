@@ -82,6 +82,9 @@
             }
 
             return true;
+        },
+        'contextmenu': function(e) {
+            console.log('calendar contextmenu', e);
         }
     });
 

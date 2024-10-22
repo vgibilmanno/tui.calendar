@@ -80,6 +80,7 @@ function TimeCreation(dragHandler, timeGridView, baseController, options) {
     dragHandler.on('dragStart', this._onDragStart, this);
     dragHandler.on('mousemove', this._onMouseMove, this);
     dragHandler.on('click', this._onClick, this);
+    dragHandler.on('contextmenu', this._onContextmenu, this);
 
     if (this._disableDblClick) {
         CLICK_DELAY = 0;
@@ -362,6 +363,52 @@ TimeCreation.prototype._onClick = function(clickEventData) {
         self._requestOnClick = false;
     }, CLICK_DELAY);
     this._dragStart = this._getScheduleDataFunc = null;
+};
+
+TimeCreation.prototype._onContextmenu = function(contextmenuEventData) {
+    var self = this;
+    var getScheduleDataFunc, scheduleData;
+    var condResult;
+    var relatedView, createRange, nearestGridTimeY, nearestGridEndTimeY, baseDate, dateStart, dateEnd, start, end;
+
+    condResult = this.checkExpectedCondition(contextmenuEventData.target);
+    if (!condResult || this._disableClick) {
+        return;
+    }
+
+    getScheduleDataFunc = this._retriveScheduleData(condResult);
+    scheduleData = getScheduleDataFunc(contextmenuEventData.originEvent);
+
+    relatedView = scheduleData.relatedView;
+    createRange = scheduleData.createRange;
+    nearestGridTimeY = scheduleData.nearestGridTimeY;
+    nearestGridEndTimeY = scheduleData.nearestGridEndTimeY
+        ? scheduleData.nearestGridEndTimeY
+        : new TZDate(nearestGridTimeY).addMinutes(15);
+
+    if (!createRange) {
+        createRange = [
+            nearestGridTimeY,
+            nearestGridEndTimeY
+        ];
+    }
+
+    baseDate = new TZDate(relatedView.getDate());
+    dateStart = datetime.start(baseDate);
+    dateEnd = datetime.getStartOfNextDay(baseDate);
+    start = common.limitDate(createRange[0], dateStart, dateEnd);
+    end = common.limitDate(createRange[1], dateStart, dateEnd);
+
+    this._requestOnClick = true;
+    setTimeout(function() {
+        if (self._requestOnClick) {
+            self.fire('contextmenu', {
+                start: start,
+                end: end
+            });
+        }
+        self._requestOnClick = false;
+    }, CLICK_DELAY);
 };
 
 /**

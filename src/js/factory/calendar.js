@@ -1398,6 +1398,18 @@ Calendar.prototype._onClick = function(clickScheduleData) {
      */
     this.fire('clickSchedule', clickScheduleData);
 };
+
+Calendar.prototype._onCreationContextmenu = function(contextmenuScheduleData) {
+    /**
+     * Fire this event when click a schedule.
+     * @event Calendar#clickSchedule
+     * @type {object}
+     * @property {Schedule} schedule - The {@link Schedule} instance
+     * @property {MouseEvent} event - MouseEvent
+     */
+    this.fire('contextmenu', contextmenuScheduleData);
+};
+
 /**
  * A bridge-based event handler for connecting a click handler to a user click event handler for each view
  * @fires Calendar#clickSchedule
@@ -1612,6 +1624,7 @@ Calendar.prototype._toggleViewSchedule = function(isAttach, view) {
     util.forEach(handler.creation, function(creationHandler) {
         creationHandler[method]('beforeCreateSchedule', self._onBeforeCreate, self);
         creationHandler[method]('beforeDeleteSchedule', self._onBeforeDelete, self);
+        creationHandler[method]('contextmenu', self._onCreationContextmenu, self);
     });
 
     util.forEach(handler.move, function(moveHandler) {
