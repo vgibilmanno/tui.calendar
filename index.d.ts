@@ -121,7 +121,7 @@ export interface IEvents {
     'clickMore'?: (eventObj: IEventMoreObject) => void;
     'clickSchedule'?: (eventObj: IEventScheduleObject) => void;
     'contextmenuSchedule'?: (eventObj: IEventScheduleObject) => void;
-    'contextmenu'?: (eventObj: IEventObject) => void;
+    'contextmenu'?: (eventObj: IEventTimeViewObject) => void;
     'clickTimezonesCollapseBtn'?: (timezonesCollapsed: boolean) => void;
 }
 
