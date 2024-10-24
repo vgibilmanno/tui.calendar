@@ -98,6 +98,7 @@ module.exports = function(baseController, layoutContainer, dragHandler, options,
         'allday': util.isArray(scheduleView) ? util.inArray('allday', scheduleView) >= 0 : scheduleView,
         'time': util.isArray(scheduleView) ? util.inArray('time', scheduleView) >= 0 : scheduleView
     };
+    var onDestroyCreationGuide;
 
     // Make panels by view sequence and visibilities
     util.forEach(DEFAULT_PANELS, function(panel) {
@@ -255,6 +256,12 @@ module.exports = function(baseController, layoutContainer, dragHandler, options,
 
     baseController.on('setCalendars', onSetCalendars);
 
+    onDestroyCreationGuide = function() {
+        if (weekView.handler.creation.time.guide) {
+            weekView.handler.creation.time.guide.clearGuideElement();
+        }
+    };
+
     // binding popup for schedule detail
     if (options.useDetailPopup) {
         detailView = new ScheduleDetailPopup(layoutContainer);
@@ -287,6 +294,7 @@ module.exports = function(baseController, layoutContainer, dragHandler, options,
 
         util.forEach(weekView.handler.click, function(panel) {
             panel.on('clickSchedule', onShowDetailPopup);
+            panel.on('destroyCreationGuide', onDestroyCreationGuide);
         });
         if (options.useCreationPopup) {
             onShowEditPopup = function(eventData) {

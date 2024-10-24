@@ -33,9 +33,32 @@ function TimeClick(dragHandler, timeGridView, baseController) {
 
     dragHandler.on({
         'click': this._onClick,
-        'contextmenu': this._onContextMenu
+        'contextmenu': this._onContextMenu,
+        'mousemove': this._onMouseMove
     }, this);
 }
+
+TimeClick.prototype._onMouseMove = function(clickEvent) {
+    var self = this,
+        target = clickEvent.target,
+        timeView = this.checkExpectCondition(target),
+        blockElement = domutil.closest(target, config.classname('.time-date-schedule-block')),
+        schedulesCollection = this.baseController.schedules;
+
+    if (!timeView || !blockElement) {
+        return;
+    }
+
+    schedulesCollection.doWhenHas(domutil.getData(blockElement, 'id'), function() {
+        /**
+         * @events TimeClick#clickSchedule
+         * @type {object}
+         * @property {Schedule} schedule - schedule instance
+         * @property {MouseEvent} event - MouseEvent object
+         */
+        self.fire('destroyCreationGuide');
+    });
+};
 
 /**
  * Destroy method
