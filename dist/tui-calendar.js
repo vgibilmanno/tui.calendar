@@ -1,6 +1,6 @@
 /*!
  * TOAST UI Calendar
- * @version 1.15.20 | Tue Oct 22 2024
+ * @version 1.15.21 | Thu Oct 24 2024
  * @license MIT
  */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -12848,6 +12848,7 @@ module.exports = function(baseController, layoutContainer, dragHandler, options,
         'allday': util.isArray(scheduleView) ? util.inArray('allday', scheduleView) >= 0 : scheduleView,
         'time': util.isArray(scheduleView) ? util.inArray('time', scheduleView) >= 0 : scheduleView
     };
+    var onDestroyCreationGuide;
 
     // Make panels by view sequence and visibilities
     util.forEach(DEFAULT_PANELS, function(panel) {
@@ -13005,6 +13006,12 @@ module.exports = function(baseController, layoutContainer, dragHandler, options,
 
     baseController.on('setCalendars', onSetCalendars);
 
+    onDestroyCreationGuide = function() {
+        if (weekView.handler.creation.time.guide) {
+            weekView.handler.creation.time.guide.clearGuideElement();
+        }
+    };
+
     // binding popup for schedule detail
     if (options.useDetailPopup) {
         detailView = new ScheduleDetailPopup(layoutContainer);
@@ -13037,6 +13044,7 @@ module.exports = function(baseController, layoutContainer, dragHandler, options,
 
         util.forEach(weekView.handler.click, function(panel) {
             panel.on('clickSchedule', onShowDetailPopup);
+            panel.on('destroyCreationGuide', onDestroyCreationGuide);
         });
         if (options.useCreationPopup) {
             onShowEditPopup = function(eventData) {
@@ -17528,9 +17536,32 @@ function TimeClick(dragHandler, timeGridView, baseController) {
 
     dragHandler.on({
         'click': this._onClick,
-        'contextmenu': this._onContextMenu
+        'contextmenu': this._onContextMenu,
+        'mousemove': this._onMouseMove
     }, this);
 }
+
+TimeClick.prototype._onMouseMove = function(clickEvent) {
+    var self = this,
+        target = clickEvent.target,
+        timeView = this.checkExpectCondition(target),
+        blockElement = domutil.closest(target, config.classname('.time-date-schedule-block')),
+        schedulesCollection = this.baseController.schedules;
+
+    if (!timeView || !blockElement) {
+        return;
+    }
+
+    schedulesCollection.doWhenHas(domutil.getData(blockElement, 'id'), function() {
+        /**
+         * @events TimeClick#clickSchedule
+         * @type {object}
+         * @property {Schedule} schedule - schedule instance
+         * @property {MouseEvent} event - MouseEvent object
+         */
+        self.fire('destroyCreationGuide');
+    });
+};
 
 /**
  * Destroy method
